@@ -73,7 +73,7 @@ const transactions = ref<Transaction[]>([
   {
     id: 'TX-2385',
     title: 'Item exchange fee',
-    counterparty: 'CampusTrade',
+    counterparty: 'KIEN STORE',
     amount: 20000,
     status: 'completed',
     type: 'debit',

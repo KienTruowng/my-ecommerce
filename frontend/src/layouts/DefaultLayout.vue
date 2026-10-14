@@ -13,7 +13,7 @@ import AppSidebar from '@/components/layout/AppSidebar.vue'
         <div
           class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col gap-2 md:flex-row md:items-center md:justify-between"
         >
-          <div class="text-sm font-semibold">CampusTrade</div>
+          <div class="text-sm font-semibold">KIEN STORE</div>
           <div class="text-xs text-muted-foreground">
             Built for student-to-student trading within your university.
           </div>

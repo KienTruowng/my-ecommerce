@@ -1,6 +1,8 @@
+
 /// <reference types="vite/client" />
 
-// Augment vue-router to include custom route meta fields
+import 'vue-router'
+
 declare module 'vue-router' {
   interface RouteMeta {
     layout?: string

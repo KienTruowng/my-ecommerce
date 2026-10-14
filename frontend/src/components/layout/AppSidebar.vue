@@ -154,7 +154,7 @@ onMounted(() => {
         <span
           class="text-base font-semibold tracking-tight transition-all duration-300"
           :class="collapsed ? 'lg:opacity-0 lg:w-0 lg:overflow-hidden' : 'opacity-100'"
-        >CampusTrade</span>
+        >KIEN STORE</span>
       </RouterLink>
       <Button
         variant="ghost"

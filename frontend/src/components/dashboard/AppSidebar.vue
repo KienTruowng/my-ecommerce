@@ -42,7 +42,7 @@ const data = {
           >
             <a href="#">
               <ArrowBigDown class="size-5!" />
-              <span class="text-base font-semibold">CampusTrade</span>
+              <span class="text-base font-semibold">KIEN STORE</span>
             </a>
           </SidebarMenuButton>
         </SidebarMenuItem>

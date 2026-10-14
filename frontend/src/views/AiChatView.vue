@@ -23,7 +23,7 @@ const messages = ref<ChatMessage[]>([
   {
     id: 'm1',
     role: 'assistant',
-    text: 'Hi! I\'m your CampusTrade AI assistant powered by DeepSeek. I can help you craft listings, negotiate trades, suggest fair prices, and recommend safe meetup spots. What can I help with?',
+    text: 'Hi! I\'m your KIEN STORE AI assistant powered by DeepSeek. I can help you craft listings, negotiate trades, suggest fair prices, and recommend safe meetup spots. What can I help with?',
     time: '',
   },
 ])

@@ -79,7 +79,7 @@ onMounted(async () => {
     class="flex flex-wrap md:flex-nowrap items-center justify-between px-4 md:px-6 py-4 gap-y-3 border-b bg-background/90 backdrop-blur"
   >
     <div class="flex items-center gap-4 md:gap-6">
-      <RouterLink to="/" class="text-xl font-semibold tracking-tight">CampusTrade</RouterLink>
+      <RouterLink to="/" class="text-xl font-semibold tracking-tight">KIEN STORE</RouterLink>
 
       <nav class="hidden md:flex items-center gap-2 text-sm font-medium">
         <Button variant="ghost" as-child>
