@@ -23,10 +23,10 @@ const handleSubmit = () => {
 
 <template>
   <div :class="cn('flex flex-col gap-6', props.class)">
-    <Card>
+    <Card class="border-0 bg-white text-[#0B2347] shadow-none">
       <CardHeader>
-        <CardTitle>Login to your account</CardTitle>
-        <CardDescription> Enter your email below to login to your account </CardDescription>
+        <CardTitle class="text-2xl font-bold text-[#0B2347]">Chào mừng trở lại</CardTitle>
+        <CardDescription> Đăng nhập để tiếp tục mua sắm tại KIEN STORE </CardDescription>
       </CardHeader>
       <CardContent>
         <form @submit.prevent="handleSubmit">
@@ -51,7 +51,7 @@ const handleSubmit = () => {
               <Input v-model="model.password" id="password" type="password" required />
             </Field>
             <Field>
-              <Button type="submit"> Login </Button>
+              <Button type="submit" class="h-11 w-full rounded-xl bg-[#175CD3] text-white font-semibold hover:bg-[#0B2347]">Đăng nhập</Button>
               <Button variant="outline" type="button"> Login with Google </Button>
               <FieldDescription class="text-center">
                 Don't have an account?
