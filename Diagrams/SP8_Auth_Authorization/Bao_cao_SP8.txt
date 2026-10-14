@@ -1,0 +1,26 @@
+BÁO CÁO PHÁT TRIỂN PHẦN MỀM
+HẠNG MỤC: SPRINT 8 - XÁC THỰC & PHÂN QUYỀN (AUTH & AUTHORIZATION)
+
+1. MỤC TIÊU SPRINT
+Thiết lập hàng rào bảo mật kỹ thuật cho toàn bộ hệ thống. Đảm bảo mọi luồng dữ liệu đều được kiểm soát chặt chẽ: Ai là người thực hiện yêu cầu (Authentication) và họ có quyền làm điều đó hay không (Authorization).
+
+2. PHÂN TÍCH TÍNH NĂNG VÀ USE CASE CHI TIẾT
+
+2.1. Use Case: Đăng ký & Đăng nhập (Authentication)
+- Tác nhân (Actor): Sinh viên, Admin
+- Mô tả: Nhận diện danh tính người dùng qua Email và Mật khẩu.
+- Tính năng chi tiết:
+  + Đăng ký: Mật khẩu được mã hóa một chiều (Hashing) bằng thuật toán bcrypt (chuẩn an toàn cao) trước khi lưu vào cơ sở dữ liệu.
+  + Đăng nhập: Sau khi đối chiếu chính xác, hệ thống áp dụng kỹ thuật xác thực không trạng thái (Stateless) bằng cách sinh ra một chuỗi mã thông báo JWT (JSON Web Token) có thời hạn. Token này chứa User ID và Role, được trả về cho Frontend để đính kèm vào Header của mọi API gọi sau này.
+
+2.2. Use Case: Đổi mật khẩu
+- Tác nhân (Actor): Mọi tài khoản đã đăng nhập
+- Mô tả: Tự quản lý bảo mật cá nhân.
+- Tính năng chi tiết: Yêu cầu xác nhận mật khẩu cũ (Old Password) trước khi Hashing và cập nhật mật khẩu mới.
+
+2.3. Use Case: Phân quyền RBAC (Role-Based Access Control)
+- Tác nhân (Actor): Hệ thống (Middleware)
+- Mô tả: Chặn các truy cập trái phép ở cấp độ API (Router).
+- Tính năng chi tiết: Xây dựng các Middleware trong Go:
+  + `RequireAuth`: Giải mã JWT, nếu hợp lệ mới cho phép gọi API (áp dụng cho các API của sinh viên như Đăng sản phẩm, Đặt giá).
+  + `RequireAdmin`: Kiểm tra trường `Role` trong JWT. Nếu không phải là `admin`, API trả về lỗi 403 Forbidden (áp dụng cho các API xóa người dùng, kết thúc đấu giá thủ công). Đảm bảo phân tách quyền hạn tuyệt đối.

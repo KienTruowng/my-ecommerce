@@ -1,0 +1,30 @@
+BÁO CÁO PHÁT TRIỂN PHẦN MỀM
+HẠNG MỤC: SPRINT 1 - QUẢN LÝ NGƯỜI DÙNG (USER MANAGEMENT)
+
+1. MỤC TIÊU SPRINT
+Sprint 1 tập trung vào việc xây dựng nền tảng cốt lõi về quản lý thông tin người dùng, bao gồm các chức năng tạo mới, lưu trữ, cập nhật và quản lý vòng đời tài khoản của hai nhóm đối tượng chính: Ban quản trị (Admin) và Sinh viên (Student). Đây là phân hệ nền móng để hệ thống có thể định danh và liên kết các thực thể khác (Sản phẩm, Giao dịch) về sau.
+
+2. PHÂN TÍCH TÍNH NĂNG VÀ USE CASE CHI TIẾT
+
+2.1. Use Case: Quản lý sinh viên (Thêm, Sửa, Xóa)
+- Tác nhân (Actor): Admin
+- Mô tả: Cho phép quản trị viên có toàn quyền kiểm soát danh sách tài khoản người dùng trên hệ thống. 
+- Tính năng chi tiết: 
+  + Thêm mới tài khoản: Admin có thể cấp phát tài khoản thủ công cho sinh viên trong các trường hợp đặc biệt.
+  + Sửa thông tin: Admin hỗ trợ cập nhật thông tin cá nhân của sinh viên khi có yêu cầu (ví dụ: sai mã sinh viên, sai email trường).
+  + Xóa tài khoản (Soft Delete): Admin có thể vô hiệu hóa hoặc đánh dấu xóa tài khoản vi phạm chính sách của nền tảng, đảm bảo tính toàn vẹn dữ liệu giao dịch cũ không bị mất đi.
+
+2.2. Use Case: Xem danh sách sinh viên
+- Tác nhân (Actor): Admin
+- Mô tả: Cung cấp giao diện bảng điều khiển (Dashboard/Data Table) để quản trị viên theo dõi toàn bộ người dùng đang hoạt động.
+- Tính năng chi tiết: Hỗ trợ hiển thị phân trang (pagination), tìm kiếm theo tên/email, và lọc theo trạng thái hoạt động (đã xác thực, đang bị khóa).
+
+2.3. Use Case: Cập nhật hồ sơ cá nhân
+- Tác nhân (Actor): Sinh viên (Student)
+- Mô tả: Cho phép sinh viên tự quản lý không gian cá nhân của mình trên nền tảng.
+- Tính năng chi tiết: Cập nhật các trường thông tin cơ bản (Tên, Tiểu sử, Trường Đại học trực thuộc) và tải lên ảnh đại diện (Avatar). Dữ liệu được xác thực định dạng trước khi lưu vào cơ sở dữ liệu.
+
+2.4. Use Case: Khôi phục tài khoản
+- Tác nhân (Actor): Admin 
+- Mô tả: Xử lý các nghiệp vụ liên quan đến tài khoản đã bị đánh dấu xóa (Soft Delete).
+- Tính năng chi tiết: Admin xem xét và khôi phục (Restore) lại quyền truy cập cho tài khoản bị khóa nhầm hoặc đã hết thời hạn phạt, kích hoạt lại trạng thái hoạt động bình thường trên toàn hệ thống.

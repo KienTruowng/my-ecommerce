@@ -1,0 +1,34 @@
+BÁO CÁO PHÁT TRIỂN PHẦN MỀM
+HẠNG MỤC: SPRINT 9 - AI, CHATBOT & ĐẤU GIÁ (BIDDING/AUCTION)
+
+1. MỤC TIÊU SPRINT
+Đây là phân hệ nâng cao của dự án, áp dụng mô hình kinh tế cạnh tranh (Đấu giá/Bidding) để giải quyết bài toán định giá cho các món đồ hiếm/hot, đồng thời tích hợp Trí tuệ nhân tạo (AI) để hiện đại hóa trải nghiệm tương tác khách hàng thông qua Chatbot thông minh.
+
+2. PHÂN TÍCH TÍNH NĂNG VÀ USE CASE CHI TIẾT
+
+2.1. Use Case: Cấu hình phiên đấu giá (Configure Auction)
+- Tác nhân (Actor): Sinh viên (Người bán)
+- Mô tả: Mở một phiên đấu giá cho sản phẩm của mình thay vì bán đứt.
+- Tính năng chi tiết: Sinh viên thiết lập các luật chơi chặt chẽ lưu vào bảng `auction_configs`:
+  + Giá khởi điểm (Base Price).
+  + Bước giá (Step Price) - bị hệ thống giới hạn tự động tối đa không vượt quá 20% giá khởi điểm để tránh lạm phát giá ảo.
+  + Tiền cọc (Deposit) để chống bùng kèo (bid-shielding).
+  + Thời hạn kết thúc (Deadline) phải là thời gian trong tương lai.
+
+2.2. Use Case: Tham gia đặt giá (Place Bid)
+- Tác nhân (Actor): Sinh viên (Người mua)
+- Mô tả: Cạnh tranh để mua sản phẩm.
+- Tính năng chi tiết: 
+  + Người mua đặt giá (Amount) lớn hơn hoặc bằng (Giá cao nhất hiện tại + Bước giá).
+  + Hệ thống xác nhận "Đã nộp cọc" (Deposit Paid).
+  + Backend thực thi Transaction (ACID) để cập nhật lại Hạng (Rank) của tất cả các Bid hiện tại (Bid mới nhất là Rank 1, các Bid cũ tụt hạng). Khóa chặt luồng chống race-condition.
+
+2.3. Use Case: Kết thúc đấu giá (Settle Auction)
+- Tác nhân (Actor): Admin / Worker nền
+- Mô tả: Phân định thắng thua khi hết thời gian Deadline.
+- Tính năng chi tiết: Hệ thống tìm ra Bid có Rank 1 chuyển trạng thái thành "Won" (Thắng). Các Bid còn lại thành "Lost" (Thua). Trạng thái phiên đấu giá đóng lại (Settled) và món đồ chính thức đổi chủ (Trạng thái chuyển sang Traded).
+
+2.4. Use Case: Chat với AI Bot & Gợi ý sản phẩm
+- Tác nhân (Actor): Sinh viên
+- Mô tả: Tương tác với trợ lý ảo trực tiếp trên giao diện trang chủ.
+- Tính năng chi tiết: Ứng dụng LLM (Large Language Model), chatbot có thể trả lời các câu hỏi thường gặp về quy định nền tảng, hỗ trợ định giá đồ cũ dựa trên lịch sử, và trích xuất từ khóa (NLP) để tự động Query database đưa ra gợi ý sản phẩm phù hợp với nhu cầu người dùng theo ngữ cảnh hội thoại.

@@ -1,0 +1,23 @@
+BÁO CÁO PHÁT TRIỂN PHẦN MỀM
+HẠNG MỤC: SPRINT 4 - THUỘC TÍNH & TRẠNG THÁI (ATTRIBUTES & TAGS)
+
+1. MỤC TIÊU SPRINT
+Mục tiêu của Sprint này là định nghĩa và hệ thống hóa luồng trạng thái (State Machine) của một sản phẩm trên nền tảng, đồng thời chuẩn hóa các loại hình giao dịch mà sản phẩm đó hỗ trợ. Điều này giúp hệ thống backend có thể kiểm soát chặt chẽ vòng đời của một món đồ từ khi đăng bán đến khi hoàn tất giao dịch.
+
+2. PHÂN TÍCH TÍNH NĂNG VÀ USE CASE CHI TIẾT
+
+2.1. Use Case: Thiết lập loại sản phẩm (Item Type)
+- Tác nhân (Actor): Sinh viên (Người bán)
+- Mô tả: Khi đăng tải sản phẩm, sinh viên có thể quyết định mô hình giao dịch cho sản phẩm đó.
+- Tính năng chi tiết: Hệ thống phân loại thành 2 loại hình cốt lõi:
+  + Barter (Trao đổi/Bán thông thường): Cho phép người mua đưa ra đề nghị trao đổi bằng tiền mặt hoặc đồ vật khác.
+  + Auction (Đấu giá): Chuyển sản phẩm vào luồng giao dịch cạnh tranh, người mua cần đưa ra mức giá cao hơn giá hiện tại để giành quyền mua.
+
+2.2. Use Case: Quản lý trạng thái sản phẩm (Item Status)
+- Tác nhân (Actor): Sinh viên, Hệ thống (System)
+- Mô tả: Theo dõi vòng đời thực tế của hàng hóa.
+- Tính năng chi tiết: Hệ thống tự động hoặc cho phép người bán chuyển đổi giữa các trạng thái:
+  + Available (Có sẵn): Đang hiển thị công khai trên Marketplace.
+  + Reserved (Đã đặt trước): Người bán đã đồng ý một giao dịch nhưng chưa hoàn tất giao nhận (tạm ẩn khỏi người mua khác).
+  + Traded (Đã giao dịch): Hoàn tất quá trình trao đổi/mua bán, sản phẩm đóng lại.
+  + Hidden (Đã ẩn): Người bán tạm thời rút sản phẩm khỏi chợ mà không xóa dữ liệu.

@@ -1,0 +1,21 @@
+BÁO CÁO PHÁT TRIỂN PHẦN MỀM
+HẠNG MỤC: SPRINT 3 - QUẢN LÝ DANH MỤC (CATEGORY MANAGEMENT)
+
+1. MỤC TIÊU SPRINT
+Xây dựng kiến trúc phân loại thông tin cho nền tảng. Việc phân loại hàng hóa rõ ràng là yếu tố tiên quyết trong thương mại điện tử giúp tăng trải nghiệm người dùng (UX) khi duyệt tìm sản phẩm. Hệ thống sử dụng thiết kế cấu trúc cây (Self-referential table) để hỗ trợ danh mục lồng nhau (Danh mục cha - Danh mục con).
+
+2. PHÂN TÍCH TÍNH NĂNG VÀ USE CASE CHI TIẾT
+
+2.1. Use Case: Quản lý danh mục (Thêm, Sửa, Xóa)
+- Tác nhân (Actor): Admin
+- Mô tả: Xây dựng và duy trì cây danh mục sản phẩm của nền tảng.
+- Tính năng chi tiết:
+  + Tạo danh mục cấp 1 (Giáo trình, Điện tử, Thời trang...).
+  + Tạo danh mục con lồng nhau (VD: Điện tử -> Laptop; Điện tử -> Điện thoại). Cấu trúc này được xử lý bằng cách sử dụng trường `parent_id` tham chiếu vòng về chính bảng Categories.
+  + Chỉnh sửa tên hoặc chuyển đổi phân cấp danh mục.
+  + Ràng buộc tính toàn vẹn: Không cho phép xóa danh mục nếu đang có sản phẩm (Items) tham chiếu đến, yêu cầu chuyển đổi danh mục sản phẩm trước khi xóa.
+
+2.2. Use Case: Xem danh sách danh mục
+- Tác nhân (Actor): Sinh viên (Student), Admin
+- Mô tả: Lấy ra danh sách các phân loại hàng hóa để hiển thị trên giao diện (Navigation Bar, Filter Sidebar).
+- Tính năng chi tiết: Hệ thống backend thực thi truy vấn để lấy ra cây danh mục định dạng JSON (Nested Data) giúp frontend dễ dàng render các Menu đa cấp, hỗ trợ sinh viên nhanh chóng tiếp cận nhóm hàng hóa mong muốn.

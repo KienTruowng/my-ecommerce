@@ -1,0 +1,27 @@
+BÁO CÁO PHÁT TRIỂN PHẦN MỀM
+HẠNG MỤC: SPRINT 5 - QUẢN LÝ SẢN PHẨM (PRODUCT / ITEM MANAGEMENT)
+
+1. MỤC TIÊU SPRINT
+Đây là module cốt lõi của nền tảng Marketplace. Sprint 5 cung cấp công cụ toàn diện để sinh viên số hóa đồ dùng cá nhân, đưa lên nền tảng trực tuyến kèm theo hình ảnh, mô tả chi tiết và danh mục cụ thể, qua đó tạo ra kho dữ liệu hàng hóa phong phú cho hệ thống.
+
+2. PHÂN TÍCH TÍNH NĂNG VÀ USE CASE CHI TIẾT
+
+2.1. Use Case: Đăng sản phẩm mới (Create Item)
+- Tác nhân (Actor): Sinh viên
+- Mô tả: Sinh viên tải lên nền tảng thông tin về một món đồ muốn thanh lý hoặc trao đổi.
+- Tính năng chi tiết: Lưu trữ thông tin cơ bản (Tên, Mô tả), gán loại hình giao dịch (Type) và gắn thẻ danh mục (nhiều danh mục qua bảng trung gian `item_categories`). 
+
+2.2. Use Case: Tải lên hình ảnh sản phẩm
+- Tác nhân (Actor): Sinh viên
+- Mô tả: Xử lý file đa phương tiện (Media) để hiển thị trực quan cho người mua.
+- Tính năng chi tiết: Áp dụng kiến trúc Object Storage (Cloudflare R2). Thay vì tải ảnh trực tiếp qua Backend gây nghẽn băng thông, hệ thống cấp một Presigned URL để Frontend đẩy trực tiếp ảnh lên Cloud, sau đó lưu chuỗi URL vào bảng `item_images` (quan hệ 1-N với bảng `items`).
+
+2.3. Use Case: Sửa / Xóa thông tin sản phẩm
+- Tác nhân (Actor): Sinh viên
+- Mô tả: Quản lý các mặt hàng đã đăng.
+- Tính năng chi tiết: Người dùng chỉ được quyền Sửa/Xóa các mặt hàng mà cột `user_id` trùng khớp với phiên đăng nhập hiện tại (kiểm soát Authorization). Hỗ trợ vô hiệu hóa hoặc xóa hẳn dữ liệu tùy thuộc vào việc sản phẩm đã phát sinh giao dịch hay chưa.
+
+2.4. Use Case: Tìm kiếm và lọc sản phẩm
+- Tác nhân (Actor): Sinh viên (Người mua)
+- Mô tả: Công cụ khám phá hàng hóa trên trang chủ.
+- Tính năng chi tiết: Cung cấp API hỗ trợ Full-text search cơ bản theo tên, lọc sản phẩm theo Category, lọc theo trạng thái (chỉ lấy "Available") và xử lý phân trang (Offset/Limit) để tối ưu hiệu suất tải trang.

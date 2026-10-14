@@ -1,0 +1,63 @@
+# =========================
+# Go
+# =========================
+bin/
+build/
+dist/
+
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+*.test
+*.out
+
+# Go modules download cache (optional nếu bạn muốn sạch repo)
+vendor/
+
+# Test coverage
+coverage.out
+
+# =========================
+# Go workspace / tooling
+# =========================
+go.work
+go.work.sum
+
+# =========================
+# Nix (Flakes)
+# =========================
+result
+result-*
+
+# Nix build output
+*.drv
+
+# Nix shell state (optional)
+.direnv/
+.envrc
+
+
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Logs
+*.log
+.env
+.env.dev
+tmp/
+**/tmp/
+
+# Local secrets and credentials
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*credentials*.json
+*service-account*.json

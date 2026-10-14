@@ -1,0 +1,19 @@
+BÁO CÁO PHÁT TRIỂN PHẦN MỀM
+HẠNG MỤC: SPRINT 2 - QUẢN LÝ ĐỊA ĐIỂM (LOCATION & ZONE MANAGEMENT)
+
+1. MỤC TIÊU SPRINT
+Sprint 2 đóng vai trò thiết lập hệ thống định vị không gian logic cho nền tảng. Chức năng này giúp giới hạn và phân vùng người dùng theo các trường Đại học (Universities) hoặc các khu vực giao dịch cụ thể, qua đó tối ưu hóa trải nghiệm tìm kiếm đồ dùng gần khu vực học tập và tăng độ tin cậy trong các giao dịch trực tiếp giữa sinh viên cùng trường.
+
+2. PHÂN TÍCH TÍNH NĂNG VÀ USE CASE CHI TIẾT
+
+2.1. Use Case: Quản lý trường đại học (Universities Management)
+- Tác nhân (Actor): Admin
+- Mô tả: Quản trị viên chịu trách nhiệm thêm, sửa, hoặc vô hiệu hóa danh sách các trường Đại học được phép tham gia vào hệ thống Campus Marketplace.
+- Tính năng chi tiết:
+  + Lưu trữ tên trường và Domain email (ví dụ: @fpt.edu.vn, @hcmut.edu.vn) để hỗ trợ quá trình xác thực sinh viên ở các Sprint sau.
+  + Mọi sinh viên khi đăng ký bắt buộc phải được gắn với một trường Đại học đã có sẵn trong cơ sở dữ liệu.
+
+2.2. Use Case: Thiết lập khu vực giao dịch (Zone Setup)
+- Tác nhân (Actor): Admin
+- Mô tả: Hệ thống hóa các địa điểm an toàn để sinh viên có thể gặp mặt và trao đổi hàng hóa trực tiếp.
+- Tính năng chi tiết: Admin có thể định nghĩa các điểm giao dịch an toàn (VD: Canteen A, Thư viện trung tâm, KTX Khu B) thuộc từng trường Đại học. Các khu vực này sau đó sẽ được đề xuất trong quá trình sinh viên thiết lập lịch hẹn (Appointments).

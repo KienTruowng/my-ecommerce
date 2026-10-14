@@ -1,0 +1,27 @@
+BÁO CÁO PHÁT TRIỂN PHẦN MỀM
+HẠNG MỤC: SPRINT 6 - GIAO DỊCH & LỊCH HẸN (TRANSACTIONS & APPOINTMENTS)
+
+1. MỤC TIÊU SPRINT
+Xây dựng cơ chế tương tác cốt lõi của một nền tảng thương mại điện tử ngang hàng (C2C). Tính năng này chuyển đổi nền tảng từ một trang "đăng tin rao vặt" thuần túy thành một "chợ giao dịch", nơi sinh viên có thể tự do đàm phán, trao đổi đồ cũ lấy đồ cũ (Barter), hoặc mua bán bằng tiền mặt (Cash).
+
+2. PHÂN TÍCH TÍNH NĂNG VÀ USE CASE CHI TIẾT
+
+2.1. Use Case: Gửi lời đề nghị giao dịch (Send Offer)
+- Tác nhân (Actor): Sinh viên (Người mua)
+- Mô tả: Bắt đầu một luồng giao dịch đối với sản phẩm đang ở trạng thái Available.
+- Tính năng chi tiết: 
+  + Người mua có thể chọn một món đồ trong kho (Inventory) của mình để "đổi ngang" (Barter).
+  + Người mua có thể đề xuất một số tiền mặt (Cash).
+  + Hoặc kết hợp cả hai: Đổi đồ + Các thêm một khoản tiền. Hệ thống lưu trữ linh hoạt luồng dữ liệu này vào bảng `offers` thông qua các trường `offer_item_id` và `cash_amount`.
+
+2.2. Use Case: Chấp nhận / Từ chối đề nghị (Accept/Reject Offer)
+- Tác nhân (Actor): Sinh viên (Người bán)
+- Mô tả: Xem xét các lời đề nghị từ những người mua khác nhau và đưa ra quyết định.
+- Tính năng chi tiết:
+  + Từ chối (Reject): Đánh dấu lời đề nghị là "Rejected", giải phóng trạng thái chờ.
+  + Chấp nhận (Accept): Luồng Database Transaction (ACID) phức tạp. Khi một Offer được chấp nhận, hệ thống phải cập nhật trạng thái của Offer đó thành "Accepted", tự động từ chối tất cả các Offer khác liên quan đến món đồ này, và chuyển trạng thái của món đồ (Item) thành "Reserved" (Đã đặt trước).
+
+2.3. Use Case: Quản lý lịch hẹn (Appointments)
+- Tác nhân (Actor): Sinh viên (Cả hai bên)
+- Mô tả: Mở rộng luồng giao dịch sau khi Offer được chấp nhận.
+- Tính năng chi tiết: Đề xuất thời gian và địa điểm giao nhận đồ thực tế tại khuôn viên trường (dựa vào dữ liệu của SP2), giúp tăng tính an toàn và minh bạch cho sinh viên.

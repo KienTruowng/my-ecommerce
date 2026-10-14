@@ -1,0 +1,3689 @@
+{
+    "components": {
+        "schemas": {
+            "auction.ConfigureAuctionRequest": {
+                "properties": {
+                    "base_price": {
+                        "type": "integer"
+                    },
+                    "deadline": {
+                        "type": "string"
+                    },
+                    "deposit_amount": {
+                        "type": "integer"
+                    },
+                    "step_price": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "auction.PlaceBidRequest": {
+                "properties": {
+                    "amount": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.AdminUpdateUserRequest": {
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "is_verified": {
+                        "description": "Admin có quyền verify",
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "description": "Admin có quyền đổi role",
+                        "type": "string"
+                    },
+                    "university_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.AdminUserListResponse": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/dto.AdminUserProfileResponse"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/github_com_AiEmStylix_ecommerce_backend_internal_user_dto.PaginationMeta"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.AdminUserProfileResponse": {
+                "properties": {
+                    "avatar_url": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
+                    },
+                    "is_verified": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "university": {
+                        "$ref": "#/components/schemas/dto.UniversityResponse"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.BrowseItemsResponse": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/dto.ItemResponse"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/github_com_AiEmStylix_ecommerce_backend_internal_items_dto.PaginationMeta"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.ConfirmAvatarUploadRequest": {
+                "properties": {
+                    "object_key": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "object_key"
+                ],
+                "type": "object"
+            },
+            "dto.ConfirmAvatarUploadResponse": {
+                "properties": {
+                    "avatar_url": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.ConfirmImageRequest": {
+                "properties": {
+                    "object_key": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.CreateCategoryRequest": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.CreateItemRequests": {
+                "properties": {
+                    "category_ids": {
+                        "items": {
+                            "type": "integer"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "image_urls": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "userID": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.CreateLocationRequest": {
+                "properties": {
+                    "address": {
+                        "type": "string"
+                    },
+                    "close_time": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "image_url": {
+                        "type": "string"
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "latitude": {
+                        "type": "number"
+                    },
+                    "longitude": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "open_time": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.GetPresignedURLRequest": {
+                "properties": {
+                    "filename": {
+                        "type": "string"
+                    },
+                    "filetype": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "filename",
+                    "filetype"
+                ],
+                "type": "object"
+            },
+            "dto.GetPresignedURLResponse": {
+                "properties": {
+                    "object_key": {
+                        "example": "avatars/171300000_my_avatar.png",
+                        "type": "string"
+                    },
+                    "upload_url": {
+                        "example": "https://r2.cloud.com/bucket/...",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.ItemImageResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.ItemResponse": {
+                "properties": {
+                    "categories": {
+                        "items": {
+                            "$ref": "#/components/schemas/github_com_AiEmStylix_ecommerce_backend_internal_items_dto.CategoryResponse"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
+                    },
+                    "images": {
+                        "items": {
+                            "$ref": "#/components/schemas/dto.ItemImageResponse"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "owner_id": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.LocationListResponse": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/dto.LocationResponse"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/github_com_AiEmStylix_ecommerce_backend_internal_locations_dto.PaginationMeta"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.LocationResponse": {
+                "properties": {
+                    "address": {
+                        "type": "string"
+                    },
+                    "close_time": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
+                    },
+                    "image_url": {
+                        "type": "string"
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "latitude": {
+                        "type": "number"
+                    },
+                    "longitude": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "open_time": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.LoginRequest": {
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.LoginResponse": {
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "token": {
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/github_com_AiEmStylix_ecommerce_backend_internal_auth_dto.UserResponse"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.MessageResponse": {
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.PresignImageRequest": {
+                "properties": {
+                    "file_type": {
+                        "description": "VD: image/jpeg, image/png",
+                        "type": "string"
+                    },
+                    "filename": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.RegisterRequest": {
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.UniversityResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.UpdateCategoryRequest": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.UpdateItemsRequest": {
+                "properties": {
+                    "category_ids": {
+                        "items": {
+                            "type": "integer"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "image_urls": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.UpdateLocationRequest": {
+                "properties": {
+                    "address": {
+                        "type": "string"
+                    },
+                    "close_time": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "image_url": {
+                        "type": "string"
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "latitude": {
+                        "type": "number"
+                    },
+                    "longitude": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "open_time": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.UpdatePasswordRequest": {
+                "properties": {
+                    "new_password": {
+                        "type": "string"
+                    },
+                    "old_password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.UpdateProfileRequest": {
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "dto.UserProfileResponse": {
+                "properties": {
+                    "avatar_url": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "github_com_AiEmStylix_ecommerce_backend_internal_auth_dto.UserResponse": {
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "github_com_AiEmStylix_ecommerce_backend_internal_items_dto.CategoryResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "github_com_AiEmStylix_ecommerce_backend_internal_items_dto.PaginationMeta": {
+                "properties": {
+                    "current_page": {
+                        "type": "integer"
+                    },
+                    "page_size": {
+                        "type": "integer"
+                    },
+                    "total_pages": {
+                        "type": "integer"
+                    },
+                    "total_records": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "github_com_AiEmStylix_ecommerce_backend_internal_locations_dto.PaginationMeta": {
+                "properties": {
+                    "current_page": {
+                        "type": "integer"
+                    },
+                    "page_size": {
+                        "type": "integer"
+                    },
+                    "total_pages": {
+                        "type": "integer"
+                    },
+                    "total_records": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "github_com_AiEmStylix_ecommerce_backend_internal_user_dto.PaginationMeta": {
+                "properties": {
+                    "current_page": {
+                        "example": 1,
+                        "type": "integer"
+                    },
+                    "page_size": {
+                        "example": 10,
+                        "type": "integer"
+                    },
+                    "total_pages": {
+                        "example": 5,
+                        "type": "integer"
+                    },
+                    "total_records": {
+                        "example": 50,
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "BearerAuth": {
+                "description": "Nhập Token theo định dạng: Bearer \u003ctoken\u003e",
+                "in": "header",
+                "name": "Authorization",
+                "type": "apiKey"
+            }
+        }
+    },
+    "info": {
+        "description": "API cho dự án Ecommerce",
+        "title": "Ecommerce API",
+        "version": "1.0"
+    },
+    "externalDocs": {
+        "description": "",
+        "url": ""
+    },
+    "paths": {
+        "/api/admin/auctions/{id}/settle": {
+            "post": {
+                "description": "Admin thủ công kết thúc một phiên đấu giá: xác nhận người thắng (rank 1), trả lại tiền cọc cho người thua, chuyển trạng thái sản phẩm thành 'traded'.",
+                "operationId": "auction-settle",
+                "parameters": [
+                    {
+                        "description": "ID phiên đấu giá (AuctionConfig ID)",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Kết thúc phiên đấu giá thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Phiên đấu giá đã được kết thúc trước đó"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Không có quyền"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Phiên đấu giá không tồn tại"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Kết thúc phiên đấu giá (Admin)",
+                "tags": [
+                    "Auction"
+                ]
+            }
+        },
+        "/api/admin/locations": {
+            "post": {
+                "description": "Tạo mới một địa điểm/khu vực giao dịch trong khuôn viên trường.",
+                "operationId": "admin-location-create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.CreateLocationRequest",
+                                        "summary": "body",
+                                        "description": "Thông tin địa điểm"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông tin địa điểm",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.LocationResponse"
+                                }
+                            }
+                        },
+                        "description": "Tạo địa điểm thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu JSON không hợp lệ"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Forbidden: Admin access required"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Tạo địa điểm giao dịch",
+                "tags": [
+                    "Locations"
+                ]
+            }
+        },
+        "/api/admin/locations/{id}": {
+            "delete": {
+                "description": "Xóa một địa điểm theo ID (soft delete).",
+                "operationId": "admin-location-delete",
+                "parameters": [
+                    {
+                        "description": "ID địa điểm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Xóa thành công (không trả về dữ liệu)"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID không hợp lệ"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Forbidden: Admin access required"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Địa điểm không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi hệ thống không mong muốn"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Xóa địa điểm",
+                "tags": [
+                    "Locations"
+                ]
+            },
+            "patch": {
+                "description": "Cập nhật thông tin địa điểm theo ID.",
+                "operationId": "admin-location-update",
+                "parameters": [
+                    {
+                        "description": "ID địa điểm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.UpdateLocationRequest",
+                                        "summary": "body",
+                                        "description": "Thông tin cần cập nhật"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông tin cần cập nhật",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.LocationResponse"
+                                }
+                            }
+                        },
+                        "description": "Cập nhật địa điểm thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID không hợp lệ | Dữ liệu JSON không hợp lệ"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Forbidden: Admin access required"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Địa điểm không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Cập nhật địa điểm",
+                "tags": [
+                    "Locations"
+                ]
+            }
+        },
+        "/api/admin/users": {
+            "get": {
+                "description": "Lấy danh sách người dùng cho Admin Dashboard. Hỗ trợ phân trang, tìm kiếm theo tên/email và lọc theo Role.",
+                "operationId": "admin-list-users",
+                "parameters": [
+                    {
+                        "description": "Số trang hiện tại (Mặc định: 1)",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Số lượng bản ghi trên một trang (Mặc định: 10, Tối đa: 100)",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "default": 10,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Từ khóa tìm kiếm (Tên hoặc Email)",
+                        "in": "query",
+                        "name": "search",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Lọc theo quyền (Ví dụ: user, admin)",
+                        "in": "query",
+                        "name": "role",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.AdminUserListResponse"
+                                }
+                            }
+                        },
+                        "description": "Danh sách người dùng và thông tin phân trang"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "[Admin] Lấy danh sách Users (Có phân trang)",
+                "tags": [
+                    "Admin Users"
+                ]
+            }
+        },
+        "/api/admin/users/{id}": {
+            "delete": {
+                "description": "Admin thực hiện xóa mềm một tài khoản người dùng khỏi hệ thống. Tài khoản này sẽ không thể đăng nhập nhưng dữ liệu vẫn còn trong database (deleted_at).",
+                "operationId": "admin-delete-user",
+                "parameters": [
+                    {
+                        "description": "ID của người dùng cần xóa",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Xóa thành công (Không trả về dữ liệu)"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Thiếu ID hoặc ID không hợp lệ"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Người dùng không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "[Admin] Xóa người dùng (Soft Delete)",
+                "tags": [
+                    "Admin Users"
+                ]
+            },
+            "get": {
+                "description": "Lấy toàn bộ thông tin của một người dùng bao gồm cả role, trạng thái verify và university (Chỉ dành cho Admin).",
+                "operationId": "admin-get-user",
+                "parameters": [
+                    {
+                        "description": "ID của người dùng",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.AdminUserProfileResponse"
+                                }
+                            }
+                        },
+                        "description": "Chi tiết người dùng"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "ID không hợp lệ"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Không tìm thấy người dùng"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "[Admin] Xem chi tiết User",
+                "tags": [
+                    "Admin Users"
+                ]
+            },
+            "patch": {
+                "description": "Admin thay đổi thông tin người dùng (Role, IsVerified, UniversityID...).",
+                "operationId": "admin-update-user",
+                "parameters": [
+                    {
+                        "description": "ID của người dùng",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.AdminUpdateUserRequest",
+                                        "summary": "body",
+                                        "description": "Payload dữ liệu cần update"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Payload dữ liệu cần update",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.AdminUserProfileResponse"
+                                }
+                            }
+                        },
+                        "description": "Thông tin sau khi cập nhật"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi dữ liệu"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Không tìm thấy"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Email bị trùng"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "[Admin] Cập nhật User",
+                "tags": [
+                    "Admin Users"
+                ]
+            }
+        },
+        "/api/admin/users/{id}/restore": {
+            "post": {
+                "description": "Admin thực hiện khôi phục tài khoản người dùng đã bị xóa mềm trước đó. Xóa trường deleted_at để user có thể hoạt động lại bình thường.",
+                "operationId": "admin-restore-user",
+                "parameters": [
+                    {
+                        "description": "ID của người dùng cần khôi phục",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Khôi phục thành công (Không trả về dữ liệu)"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "ID không hợp lệ hoặc người dùng chưa bị xóa"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Người dùng không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "[Admin] Khôi phục người dùng",
+                "tags": [
+                    "Admin Users"
+                ]
+            }
+        },
+        "/api/auth/change-password": {
+            "post": {
+                "description": "Người dùng đang đăng nhập thực hiện thay đổi mật khẩu. Yêu cầu truyền lên Access Token ở Header.",
+                "operationId": "auth-change-password",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.UpdatePasswordRequest",
+                                        "summary": "body",
+                                        "description": "Thông tin mật khẩu cũ và mới"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông tin mật khẩu cũ và mới",
+                    "required": true
+                },
+                "responses": {
+                    "204": {
+                        "description": "Đổi mật khẩu thành công (Không trả về dữ liệu)"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ hoặc sai định dạng"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Chưa đăng nhập (Token không hợp lệ hoặc bị thiếu)"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Đổi mật khẩu",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "description": "Xác thực người dùng bằng Email và Password, trả về JWT Token và thông tin cơ bản.",
+                "operationId": "auth-login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.LoginRequest",
+                                        "summary": "body",
+                                        "description": "Thông tin đăng nhập"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông tin đăng nhập",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.LoginResponse"
+                                }
+                            }
+                        },
+                        "description": "Đăng nhập thành công!"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Sai email hoặc mật khẩu"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi hệ thống"
+                    }
+                },
+                "summary": "Đăng nhập",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "description": "Tạo tài khoản người dùng mới với Name, Email và Password.",
+                "operationId": "auth-register",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.RegisterRequest",
+                                        "summary": "body",
+                                        "description": "Thông tin đăng ký"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông tin đăng ký",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.MessageResponse"
+                                }
+                            }
+                        },
+                        "description": "Đăng ký tài khoản thành công!"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ hoặc email đã tồn tại"
+                    }
+                },
+                "summary": "Đăng ký tài khoản",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "description": "Trả về danh sách tất cả danh mục có phân trang. Mặc định page=1, limit=10.",
+                "operationId": "category-list",
+                "parameters": [
+                    {
+                        "description": "Số trang (mặc định: 1)",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Số lượng mỗi trang (mặc định: 10)",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Danh sách danh mục"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Tham số page/limit không hợp lệ"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Lấy danh sách danh mục",
+                "tags": [
+                    "Categories"
+                ]
+            },
+            "post": {
+                "description": "Tạo một danh mục sản phẩm mới. Chỉ yêu cầu trường `name`.",
+                "operationId": "category-create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.CreateCategoryRequest",
+                                        "summary": "body",
+                                        "description": "Tên danh mục"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Tên danh mục",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Tạo danh mục thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu JSON không hợp lệ"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Tạo danh mục mới",
+                "tags": [
+                    "Categories"
+                ]
+            }
+        },
+        "/api/categories/{id}": {
+            "delete": {
+                "description": "Xóa một danh mục theo ID (soft delete).",
+                "operationId": "category-delete",
+                "parameters": [
+                    {
+                        "description": "ID danh mục",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Xóa thành công (không trả về dữ liệu)"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID không hợp lệ"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Danh mục không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi hệ thống không mong muốn"
+                    }
+                },
+                "summary": "Xóa danh mục",
+                "tags": [
+                    "Categories"
+                ]
+            },
+            "get": {
+                "description": "Trả về thông tin chi tiết của một danh mục theo ID.",
+                "operationId": "category-get",
+                "parameters": [
+                    {
+                        "description": "ID danh mục",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Thông tin danh mục"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID không hợp lệ"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Danh mục không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Lấy chi tiết danh mục",
+                "tags": [
+                    "Categories"
+                ]
+            },
+            "patch": {
+                "description": "Cập nhật tên của một danh mục theo ID.",
+                "operationId": "category-update",
+                "parameters": [
+                    {
+                        "description": "ID danh mục",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.UpdateCategoryRequest",
+                                        "summary": "body",
+                                        "description": "Tên danh mục mới"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Tên danh mục mới",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Cập nhật danh mục thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID không hợp lệ | Dữ liệu JSON không hợp lệ"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Danh mục không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi hệ thống không mong muốn"
+                    }
+                },
+                "summary": "Cập nhật danh mục",
+                "tags": [
+                    "Categories"
+                ]
+            }
+        },
+        "/api/item-images/{imageID}": {
+            "delete": {
+                "description": "Xóa một ảnh khỏi DB theo imageID.",
+                "operationId": "item-delete-image",
+                "parameters": [
+                    {
+                        "description": "ID của ảnh cần xóa",
+                        "in": "path",
+                        "name": "imageID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Đã xóa ảnh (không trả về dữ liệu)"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID ảnh không hợp lệ"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Xóa ảnh sản phẩm",
+                "tags": [
+                    "Items"
+                ]
+            }
+        },
+        "/api/items": {
+            "get": {
+                "description": "Trả về danh sách sản phẩm available của tất cả sinh viên. Hỗ trợ lọc theo category và phân trang.",
+                "operationId": "item-browse",
+                "parameters": [
+                    {
+                        "description": "Lọc theo category ID",
+                        "in": "query",
+                        "name": "category_id",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Số trang (mặc định: 1)",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Số lượng mỗi trang (mặc định: 20)",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.BrowseItemsResponse"
+                                }
+                            }
+                        },
+                        "description": "Danh sách sản phẩm"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Duyệt sản phẩm trên marketplace",
+                "tags": [
+                    "Items"
+                ]
+            },
+            "post": {
+                "description": "Tạo một sản phẩm mới gắn với tài khoản đang đăng nhập. Có thể đính kèm danh mục và ảnh.",
+                "operationId": "item-create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.CreateItemRequests",
+                                        "summary": "body",
+                                        "description": "Thông tin sản phẩm (name, description, category_ids, image_urls)"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông tin sản phẩm (name, description, category_ids, image_urls)",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Đăng sản phẩm thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ | Thiếu tên sản phẩm"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Đăng sản phẩm mới",
+                "tags": [
+                    "Items"
+                ]
+            }
+        },
+        "/api/items/images/presign": {
+            "post": {
+                "description": "Sinh ra một URL có thời hạn để client upload ảnh trực tiếp lên R2/S3. Sau khi upload xong, gọi API confirm để lưu vào DB.",
+                "operationId": "item-presign-image",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.PresignImageRequest",
+                                        "summary": "body",
+                                        "description": "Tên file và loại MIME (filename, file_type)"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Tên file và loại MIME (filename, file_type)",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "upload_url và object_key"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ | Thiếu filename hoặc file_type"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Lấy presigned URL để upload ảnh",
+                "tags": [
+                    "Items"
+                ]
+            }
+        },
+        "/api/items/{id}": {
+            "delete": {
+                "description": "Xóa một sản phẩm theo ID (soft delete).",
+                "operationId": "item-delete",
+                "parameters": [
+                    {
+                        "description": "ID sản phẩm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Xóa thành công (không trả về dữ liệu)"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID sản phẩm không hợp lệ"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Xóa sản phẩm",
+                "tags": [
+                    "Items"
+                ]
+            },
+            "get": {
+                "description": "Trả về thông tin đầy đủ của một sản phẩm theo ID, bao gồm danh mục và ảnh.",
+                "operationId": "item-get",
+                "parameters": [
+                    {
+                        "description": "ID sản phẩm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Thông tin sản phẩm"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID sản phẩm không hợp lệ"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Sản phẩm không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Lấy chi tiết sản phẩm",
+                "tags": [
+                    "Items"
+                ]
+            },
+            "patch": {
+                "description": "Cập nhật thông tin sản phẩm (tên, mô tả, danh mục, ảnh) theo ID.",
+                "operationId": "item-update",
+                "parameters": [
+                    {
+                        "description": "ID sản phẩm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.UpdateItemsRequest",
+                                        "summary": "body",
+                                        "description": "Thông tin cập nhật"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông tin cập nhật",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Cập nhật sản phẩm thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ | Thiếu tên sản phẩm"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Sản phẩm không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi hệ thống"
+                    }
+                },
+                "summary": "Cập nhật sản phẩm",
+                "tags": [
+                    "Items"
+                ]
+            }
+        },
+        "/api/items/{id}/auction": {
+            "get": {
+                "description": "Trả về cấu hình đấu giá và danh sách các lượt đặt giá (sắp xếp theo thứ hạng) của một sản phẩm.",
+                "operationId": "auction-get",
+                "parameters": [
+                    {
+                        "description": "ID sản phẩm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Thông tin đấu giá"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Phiên đấu giá không tồn tại"
+                    }
+                },
+                "summary": "Lấy thông tin phiên đấu giá",
+                "tags": [
+                    "Auction"
+                ]
+            },
+            "post": {
+                "description": "Người bán thiết lập các thông số đấu giá: giá khởi điểm, bước giá (tối đa 20% giá khởi điểm), tiền cọc và thời hạn. Chỉ chủ sản phẩm mới có quyền.",
+                "operationId": "auction-configure",
+                "parameters": [
+                    {
+                        "description": "ID sản phẩm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/auction.ConfigureAuctionRequest",
+                                        "summary": "body",
+                                        "description": "Thông số đấu giá"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông số đấu giá",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Cấu hình đấu giá thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Không có quyền"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Sản phẩm không tồn tại"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Cấu hình đấu giá cho sản phẩm",
+                "tags": [
+                    "Auction"
+                ]
+            }
+        },
+        "/api/items/{id}/bids": {
+            "get": {
+                "description": "Trả về tất cả các lượt đặt giá của một phiên đấu giá, sắp xếp theo thứ hạng (cao nhất trước).",
+                "operationId": "auction-bids-list",
+                "parameters": [
+                    {
+                        "description": "ID sản phẩm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Danh sách lượt đặt giá"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Phiên đấu giá không tồn tại"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Danh sách lượt đặt giá",
+                "tags": [
+                    "Auction"
+                ]
+            },
+            "post": {
+                "description": "Người mua đặt một mức giá. Giá phải ≥ (giá cao nhất hiện tại + bước giá). Hệ thống tự động ghi nhận tiền cọc (placeholder).",
+                "operationId": "auction-bid",
+                "parameters": [
+                    {
+                        "description": "ID sản phẩm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/auction.PlaceBidRequest",
+                                        "summary": "body",
+                                        "description": "Mức giá đặt"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Mức giá đặt",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Đặt giá thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Giá thấp hơn mức tối thiểu | Phiên đã kết thúc | Tự đặt giá"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Phiên đấu giá không tồn tại"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Đặt giá trong phiên đấu giá",
+                "tags": [
+                    "Auction"
+                ]
+            }
+        },
+        "/api/items/{id}/images": {
+            "post": {
+                "description": "Xác thực file ảnh đã được upload lên R2 (kiểm tra sự tồn tại và dung lượng), sau đó lưu đường dẫn vào cơ sở dữ liệu.",
+                "operationId": "item-confirm-image",
+                "parameters": [
+                    {
+                        "description": "ID sản phẩm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.ConfirmImageRequest",
+                                        "summary": "body",
+                                        "description": "object_key trả về từ bước presign"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "object_key trả về từ bước presign",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Thêm ảnh thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ | Ảnh không hợp lệ hoặc quá dung lượng"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Sản phẩm không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Xác nhận upload ảnh và lưu DB",
+                "tags": [
+                    "Items"
+                ]
+            }
+        },
+        "/api/items/{id}/offers": {
+            "get": {
+                "description": "Trả về danh sách tất cả các Offer gửi đến một item cụ thể. Chỉ chủ sở hữu của item mới có quyền gọi API này. Bao gồm thông tin người gửi (User) và item mang đi đổi (OfferItem).",
+                "operationId": "offer-list-received",
+                "parameters": [
+                    {
+                        "description": "ID của TargetItem (item đang được đề nghị)",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lấy danh sách đề nghị thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID không hợp lệ"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Không có quyền xem offer của item này"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Item không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Xem offer đến item của mình (Seller)",
+                "tags": [
+                    "Offers"
+                ]
+            },
+            "post": {
+                "description": "Gửi một Offer đến item cụ thể. Item đích phải ở trạng thái `available` và không thể gửi offer cho item của chính mình.",
+                "operationId": "offer-create",
+                "parameters": [
+                    {
+                        "description": "ID của item muốn lấy (TargetItem)",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "properties": {
+                                            "cash_amount": {
+                                                "type": "integer"
+                                            },
+                                            "offer_item_id": {
+                                                "type": "integer"
+                                            },
+                                            "offer_message": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "title": "body",
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông tin offer. offer_item_id: ID item mang đi đổi (null nếu mua bằng tiền). cash_amount: số tiền thêm vào (0 nếu chỉ đổi item). offer_message: lời nhắn.",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Gửi đề nghị trao đổi thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ | Item không còn available | Tự gửi offer cho chính mình"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Item không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Tạo đề nghị trao đổi (Buyer)",
+                "tags": [
+                    "Offers"
+                ]
+            }
+        },
+        "/api/locations": {
+            "get": {
+                "description": "Trả về danh sách địa điểm có phân trang, hỗ trợ lọc theo trạng thái và tìm kiếm.",
+                "operationId": "location-list",
+                "parameters": [
+                    {
+                        "description": "Số trang (mặc định: 1)",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Số lượng mỗi trang (mặc định: 10)",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Từ khóa tìm theo tên hoặc địa chỉ",
+                        "in": "query",
+                        "name": "search",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Lọc theo trạng thái hoạt động",
+                        "in": "query",
+                        "name": "active",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.LocationListResponse"
+                                }
+                            }
+                        },
+                        "description": "Danh sách địa điểm"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Tham số page/limit không hợp lệ"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Lấy danh sách địa điểm giao dịch",
+                "tags": [
+                    "Locations"
+                ]
+            }
+        },
+        "/api/locations/{id}": {
+            "get": {
+                "description": "Trả về thông tin chi tiết của một địa điểm theo ID.",
+                "operationId": "location-get",
+                "parameters": [
+                    {
+                        "description": "ID địa điểm",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.LocationResponse"
+                                }
+                            }
+                        },
+                        "description": "Thông tin địa điểm"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "ID không hợp lệ"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Địa điểm không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "summary": "Lấy chi tiết địa điểm",
+                "tags": [
+                    "Locations"
+                ]
+            }
+        },
+        "/api/offers/{id}/status": {
+            "patch": {
+                "description": "Cập nhật trạng thái của một Offer. Chỉ chủ sở hữu TargetItem mới có quyền thực hiện. Khi `accepted`: offer được duyệt, tất cả offer pending còn lại của item đó tự động bị `rejected`, item chuyển sang `traded`. Khi `rejected`: chỉ offer này bị từ chối.",
+                "operationId": "offer-update-status",
+                "parameters": [
+                    {
+                        "description": "ID của Offer cần cập nhật",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "properties": {
+                                            "status": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "title": "body",
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Trạng thái mới: \\",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Cập nhật trạng thái đề nghị thành công"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ | Status không được phép"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Không có quyền duyệt offer này"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Offer không tồn tại"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Duyệt hoặc từ chối offer (Seller)",
+                "tags": [
+                    "Offers"
+                ]
+            }
+        },
+        "/api/users/avatar/confirm": {
+            "post": {
+                "description": "Sau khi client upload file thành công lên S3/R2 bằng Presigned URL, gọi API này truyền vào object_key để Backend kiểm tra file và lưu URL vào database của User.",
+                "operationId": "user-confirm-avatar-upload",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.ConfirmAvatarUploadRequest",
+                                        "summary": "body",
+                                        "description": "Object Key nhận được từ API tạo Upload URL"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Object Key nhận được từ API tạo Upload URL",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.ConfirmAvatarUploadResponse"
+                                }
+                            }
+                        },
+                        "description": "Xác nhận thành công, trả về link avatar mới"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu không hợp lệ hoặc file vượt quá dung lượng"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Chưa đăng nhập hoặc token hết hạn"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ khi cập nhật database"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Xác nhận upload avatar thành công",
+                "tags": [
+                    "Users"
+                ]
+            }
+        },
+        "/api/users/avatar/upload-url": {
+            "post": {
+                "description": "Lấy thông tin file để upload avatar lên bucket s3",
+                "operationId": "user-get-avatar-upload-url",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.GetPresignedURLRequest",
+                                        "summary": "body",
+                                        "description": "Thông tin file cần upload (tên và định dạng)"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Thông tin file cần upload (tên và định dạng)",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.GetPresignedURLResponse"
+                                }
+                            }
+                        },
+                        "description": "Thành công, trả về link upload và object key"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu JSON gửi lên không hợp lệ"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Chưa đăng nhập (Token không hợp lệ)"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ khi tạo URL"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Lấy link upload avatar",
+                "tags": [
+                    "Users"
+                ]
+            }
+        },
+        "/api/users/me/items": {
+            "get": {
+                "description": "Trả về danh sách sản phẩm của người dùng đang đăng nhập. Có thể lọc theo trạng thái (`available`, `reserved`, `traded`, `hidden`).",
+                "operationId": "item-list-mine",
+                "parameters": [
+                    {
+                        "description": "Lọc theo trạng thái: available | reserved | traded | hidden",
+                        "in": "query",
+                        "name": "status",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/dto.ItemResponse"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Danh sách sản phẩm"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Xem kho đồ của tôi",
+                "tags": [
+                    "Items"
+                ]
+            }
+        },
+        "/api/users/me/offers": {
+            "get": {
+                "description": "Trả về danh sách tất cả các Offer mà người dùng đang đăng nhập đã gửi đi. Bao gồm thông tin đầy đủ về item muốn lấy (TargetItem) và item mang đi đổi (OfferItem).",
+                "operationId": "offer-list-sent",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {},
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lấy lịch sử đề nghị thành công"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Lịch sử offer đã gửi (Buyer)",
+                "tags": [
+                    "Offers"
+                ]
+            }
+        },
+        "/api/users/profile": {
+            "get": {
+                "description": "Lấy thông tin cá nhân của người dùng đang đăng nhập (dựa vào JWT Token gửi trên Header).",
+                "operationId": "user-get-profile",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.UserProfileResponse"
+                                }
+                            }
+                        },
+                        "description": "Thành công, trả về thông tin người dùng"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Chưa đăng nhập (Token không hợp lệ hoặc bị thiếu)"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Không tìm thấy người dùng trong hệ thống"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Lấy thông tin Profile",
+                "tags": [
+                    "Users"
+                ]
+            },
+            "patch": {
+                "description": "Cập nhật các thông tin cá nhân của người dùng (Name, Email). Bỏ qua các trường bị trống.",
+                "operationId": "user-update-profile",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/dto.UpdateProfileRequest",
+                                        "summary": "body",
+                                        "description": "Payload cập nhật thông tin"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "description": "Payload cập nhật thông tin",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/dto.UserProfileResponse"
+                                }
+                            }
+                        },
+                        "description": "Cập nhật thành công, trả về profile mới"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Dữ liệu gửi lên không hợp lệ"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Chưa đăng nhập (Token không hợp lệ)"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Không tìm thấy người dùng"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Lỗi máy chủ nội bộ"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "summary": "Cập nhật thông tin User Profile",
+                "tags": [
+                    "Users"
+                ]
+            }
+        }
+    },
+    "openapi": "3.1.0"
+}

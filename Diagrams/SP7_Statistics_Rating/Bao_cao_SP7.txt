@@ -1,0 +1,22 @@
+BÁO CÁO PHÁT TRIỂN PHẦN MỀM
+HẠNG MỤC: SPRINT 7 - THỐNG KÊ & ĐÁNH GIÁ (STATISTICS & RATING)
+
+1. MỤC TIÊU SPRINT
+Sprint 7 bao gồm hai thành phần chính: (1) Cung cấp công cụ phân tích dữ liệu cho Ban quản trị để giám sát sức khỏe của nền tảng; (2) Xây dựng hệ thống niềm tin (Trust System) giữa các sinh viên thông qua cơ chế chấm điểm uy tín sau giao dịch.
+
+2. PHÂN TÍCH TÍNH NĂNG VÀ USE CASE CHI TIẾT
+
+2.1. Use Case: Xem Dashboard thống kê
+- Tác nhân (Actor): Admin
+- Mô tả: Hiển thị các chỉ số đo lường hiệu quả hoạt động (KPI) của hệ thống theo thời gian thực.
+- Tính năng chi tiết: Backend tổng hợp dữ liệu từ nhiều bảng (Users, Items, Offers) để trả về các con số thống kê: Tổng lượng người dùng mới, Số lượng giao dịch thành công trong tuần, Tỉ lệ chuyển đổi, Các mặt hàng đang hot. Frontend hiển thị dưới dạng biểu đồ trực quan (Charts).
+
+2.2. Use Case: Đánh giá người dùng (Rating / Reviews)
+- Tác nhân (Actor): Sinh viên
+- Mô tả: Cơ chế phản hồi sau khi hoàn tất một giao dịch thành công (Traded).
+- Tính năng chi tiết: Người mua và người bán có thể để lại số sao (từ 1 đến 5) và nhận xét (Comment) cho đối phương. Hệ thống đảm bảo tính công bằng: Mỗi giao dịch chỉ được đánh giá 1 lần cho mỗi bên, ngăn chặn việc thao túng điểm số (Spam rating).
+
+2.3. Use Case: Xem điểm uy tín
+- Tác nhân (Actor): Sinh viên
+- Mô tả: Minh bạch hóa độ tin cậy của các thành viên trên nền tảng.
+- Tính năng chi tiết: Hồ sơ (Profile) của mỗi người dùng sẽ tự động hiển thị Điểm trung bình (Average Rating) được tính toán theo thời gian thực dựa trên tổng số đánh giá họ nhận được. Người dùng có điểm uy tín thấp có thể bị hệ thống gắn cờ cảnh báo (Flagged).
